@@ -1,0 +1,18 @@
+import express from 'express';
+import { customerRoutes } from '../app/modules/customers/customer.routes';
+import { bikeRoutes } from '../app/modules/bikes/bike.routes';
+const router = express.Router();
+const moduleRoutes=[
+    {
+        path:"/customers",
+        route:customerRoutes
+    },
+    {
+        path:"/bikes",
+        route:bikeRoutes
+    }
+]
+moduleRoutes.forEach((route)=>{
+    router.use(route.path,route.route)
+})
+export default router

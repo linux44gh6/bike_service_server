@@ -4,6 +4,26 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+model Customer{
+  customerId        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String 
+  createdAt DateTime @default(now())
+ Bike     Bike[]
+  @@map("customers")
+}
+model Bike{
+  bikeId        String   @id @default(cuid())
+  name      String
+  type      String
+  price     Float
+  createdAt DateTime @default(now())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [customerId])
+  @@map("bikes")
+}
+
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
