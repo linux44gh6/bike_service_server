@@ -134,6 +134,15 @@ exports.Prisma.BikeScalarFieldEnum = {
   customerId: 'customerId'
 };
 
+exports.Prisma.ServiceScalarFieldEnum = {
+  serviceId: 'serviceId',
+  bikeId: 'bikeId',
+  serviceDate: 'serviceDate',
+  completionDate: 'completionDate',
+  description: 'description',
+  status: 'status'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -144,10 +153,20 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.ServiceStatus = exports.$Enums.ServiceStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED'
+};
 
 exports.Prisma.ModelName = {
   Customer: 'Customer',
-  Bike: 'Bike'
+  Bike: 'Bike',
+  Service: 'Service'
 };
 
 /**

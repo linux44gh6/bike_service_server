@@ -23,8 +23,25 @@ model Bike {
   createdAt  DateTime @default(now())
   customerId String
   customer   Customer @relation(fields: [customerId], references: [customerId])
+  service    Service?
 
   @@map("bikes")
+}
+
+model Service {
+  serviceId      String        @id @default(cuid())
+  bikeId         String        @unique
+  bike           Bike          @relation(fields: [bikeId], references: [bikeId])
+  serviceDate    DateTime      @default(now())
+  completionDate DateTime?
+  description    String
+  status         ServiceStatus @default(PENDING)
+}
+
+enum ServiceStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
 }
 
 generator client {
