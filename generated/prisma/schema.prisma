@@ -17,9 +17,9 @@ model Customer {
 
 model Bike {
   bikeId     String   @id @default(cuid())
-  name       String
-  type       String
-  price      Float
+  Brand      String
+  Model      String
+  Year       Int
   createdAt  DateTime @default(now())
   customerId String
   customer   Customer @relation(fields: [customerId], references: [customerId])

@@ -2073,36 +2073,36 @@ export namespace Prisma {
   }
 
   export type BikeAvgAggregateOutputType = {
-    price: number | null
+    Year: number | null
   }
 
   export type BikeSumAggregateOutputType = {
-    price: number | null
+    Year: number | null
   }
 
   export type BikeMinAggregateOutputType = {
     bikeId: string | null
-    name: string | null
-    type: string | null
-    price: number | null
+    Brand: string | null
+    Model: string | null
+    Year: number | null
     createdAt: Date | null
     customerId: string | null
   }
 
   export type BikeMaxAggregateOutputType = {
     bikeId: string | null
-    name: string | null
-    type: string | null
-    price: number | null
+    Brand: string | null
+    Model: string | null
+    Year: number | null
     createdAt: Date | null
     customerId: string | null
   }
 
   export type BikeCountAggregateOutputType = {
     bikeId: number
-    name: number
-    type: number
-    price: number
+    Brand: number
+    Model: number
+    Year: number
     createdAt: number
     customerId: number
     _all: number
@@ -2110,36 +2110,36 @@ export namespace Prisma {
 
 
   export type BikeAvgAggregateInputType = {
-    price?: true
+    Year?: true
   }
 
   export type BikeSumAggregateInputType = {
-    price?: true
+    Year?: true
   }
 
   export type BikeMinAggregateInputType = {
     bikeId?: true
-    name?: true
-    type?: true
-    price?: true
+    Brand?: true
+    Model?: true
+    Year?: true
     createdAt?: true
     customerId?: true
   }
 
   export type BikeMaxAggregateInputType = {
     bikeId?: true
-    name?: true
-    type?: true
-    price?: true
+    Brand?: true
+    Model?: true
+    Year?: true
     createdAt?: true
     customerId?: true
   }
 
   export type BikeCountAggregateInputType = {
     bikeId?: true
-    name?: true
-    type?: true
-    price?: true
+    Brand?: true
+    Model?: true
+    Year?: true
     createdAt?: true
     customerId?: true
     _all?: true
@@ -2233,9 +2233,9 @@ export namespace Prisma {
 
   export type BikeGroupByOutputType = {
     bikeId: string
-    name: string
-    type: string
-    price: number
+    Brand: string
+    Model: string
+    Year: number
     createdAt: Date
     customerId: string
     _count: BikeCountAggregateOutputType | null
@@ -2261,9 +2261,9 @@ export namespace Prisma {
 
   export type BikeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     bikeId?: boolean
-    name?: boolean
-    type?: boolean
-    price?: boolean
+    Brand?: boolean
+    Model?: boolean
+    Year?: boolean
     createdAt?: boolean
     customerId?: boolean
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
@@ -2271,9 +2271,9 @@ export namespace Prisma {
 
   export type BikeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     bikeId?: boolean
-    name?: boolean
-    type?: boolean
-    price?: boolean
+    Brand?: boolean
+    Model?: boolean
+    Year?: boolean
     createdAt?: boolean
     customerId?: boolean
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
@@ -2281,9 +2281,9 @@ export namespace Prisma {
 
   export type BikeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     bikeId?: boolean
-    name?: boolean
-    type?: boolean
-    price?: boolean
+    Brand?: boolean
+    Model?: boolean
+    Year?: boolean
     createdAt?: boolean
     customerId?: boolean
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
@@ -2291,14 +2291,14 @@ export namespace Prisma {
 
   export type BikeSelectScalar = {
     bikeId?: boolean
-    name?: boolean
-    type?: boolean
-    price?: boolean
+    Brand?: boolean
+    Model?: boolean
+    Year?: boolean
     createdAt?: boolean
     customerId?: boolean
   }
 
-  export type BikeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"bikeId" | "name" | "type" | "price" | "createdAt" | "customerId", ExtArgs["result"]["bike"]>
+  export type BikeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"bikeId" | "Brand" | "Model" | "Year" | "createdAt" | "customerId", ExtArgs["result"]["bike"]>
   export type BikeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }
@@ -2316,9 +2316,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       bikeId: string
-      name: string
-      type: string
-      price: number
+      Brand: string
+      Model: string
+      Year: number
       createdAt: Date
       customerId: string
     }, ExtArgs["result"]["bike"]>
@@ -2746,9 +2746,9 @@ export namespace Prisma {
    */
   interface BikeFieldRefs {
     readonly bikeId: FieldRef<"Bike", 'String'>
-    readonly name: FieldRef<"Bike", 'String'>
-    readonly type: FieldRef<"Bike", 'String'>
-    readonly price: FieldRef<"Bike", 'Float'>
+    readonly Brand: FieldRef<"Bike", 'String'>
+    readonly Model: FieldRef<"Bike", 'String'>
+    readonly Year: FieldRef<"Bike", 'Int'>
     readonly createdAt: FieldRef<"Bike", 'DateTime'>
     readonly customerId: FieldRef<"Bike", 'String'>
   }
@@ -3192,9 +3192,9 @@ export namespace Prisma {
 
   export const BikeScalarFieldEnum: {
     bikeId: 'bikeId',
-    name: 'name',
-    type: 'type',
-    price: 'price',
+    Brand: 'Brand',
+    Model: 'Model',
+    Year: 'Year',
     createdAt: 'createdAt',
     customerId: 'customerId'
   };
@@ -3252,20 +3252,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3276,6 +3262,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -3342,9 +3342,9 @@ export namespace Prisma {
     OR?: BikeWhereInput[]
     NOT?: BikeWhereInput | BikeWhereInput[]
     bikeId?: StringFilter<"Bike"> | string
-    name?: StringFilter<"Bike"> | string
-    type?: StringFilter<"Bike"> | string
-    price?: FloatFilter<"Bike"> | number
+    Brand?: StringFilter<"Bike"> | string
+    Model?: StringFilter<"Bike"> | string
+    Year?: IntFilter<"Bike"> | number
     createdAt?: DateTimeFilter<"Bike"> | Date | string
     customerId?: StringFilter<"Bike"> | string
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
@@ -3352,9 +3352,9 @@ export namespace Prisma {
 
   export type BikeOrderByWithRelationInput = {
     bikeId?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    price?: SortOrder
+    Brand?: SortOrder
+    Model?: SortOrder
+    Year?: SortOrder
     createdAt?: SortOrder
     customerId?: SortOrder
     customer?: CustomerOrderByWithRelationInput
@@ -3365,9 +3365,9 @@ export namespace Prisma {
     AND?: BikeWhereInput | BikeWhereInput[]
     OR?: BikeWhereInput[]
     NOT?: BikeWhereInput | BikeWhereInput[]
-    name?: StringFilter<"Bike"> | string
-    type?: StringFilter<"Bike"> | string
-    price?: FloatFilter<"Bike"> | number
+    Brand?: StringFilter<"Bike"> | string
+    Model?: StringFilter<"Bike"> | string
+    Year?: IntFilter<"Bike"> | number
     createdAt?: DateTimeFilter<"Bike"> | Date | string
     customerId?: StringFilter<"Bike"> | string
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
@@ -3375,9 +3375,9 @@ export namespace Prisma {
 
   export type BikeOrderByWithAggregationInput = {
     bikeId?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    price?: SortOrder
+    Brand?: SortOrder
+    Model?: SortOrder
+    Year?: SortOrder
     createdAt?: SortOrder
     customerId?: SortOrder
     _count?: BikeCountOrderByAggregateInput
@@ -3392,9 +3392,9 @@ export namespace Prisma {
     OR?: BikeScalarWhereWithAggregatesInput[]
     NOT?: BikeScalarWhereWithAggregatesInput | BikeScalarWhereWithAggregatesInput[]
     bikeId?: StringWithAggregatesFilter<"Bike"> | string
-    name?: StringWithAggregatesFilter<"Bike"> | string
-    type?: StringWithAggregatesFilter<"Bike"> | string
-    price?: FloatWithAggregatesFilter<"Bike"> | number
+    Brand?: StringWithAggregatesFilter<"Bike"> | string
+    Model?: StringWithAggregatesFilter<"Bike"> | string
+    Year?: IntWithAggregatesFilter<"Bike"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Bike"> | Date | string
     customerId?: StringWithAggregatesFilter<"Bike"> | string
   }
@@ -3461,62 +3461,62 @@ export namespace Prisma {
 
   export type BikeCreateInput = {
     bikeId?: string
-    name: string
-    type: string
-    price: number
+    Brand: string
+    Model: string
+    Year: number
     createdAt?: Date | string
     customer: CustomerCreateNestedOneWithoutBikeInput
   }
 
   export type BikeUncheckedCreateInput = {
     bikeId?: string
-    name: string
-    type: string
-    price: number
+    Brand: string
+    Model: string
+    Year: number
     createdAt?: Date | string
     customerId: string
   }
 
   export type BikeUpdateInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    Brand?: StringFieldUpdateOperationsInput | string
+    Model?: StringFieldUpdateOperationsInput | string
+    Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customer?: CustomerUpdateOneRequiredWithoutBikeNestedInput
   }
 
   export type BikeUncheckedUpdateInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    Brand?: StringFieldUpdateOperationsInput | string
+    Model?: StringFieldUpdateOperationsInput | string
+    Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type BikeCreateManyInput = {
     bikeId?: string
-    name: string
-    type: string
-    price: number
+    Brand: string
+    Model: string
+    Year: number
     createdAt?: Date | string
     customerId: string
   }
 
   export type BikeUpdateManyMutationInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    Brand?: StringFieldUpdateOperationsInput | string
+    Model?: StringFieldUpdateOperationsInput | string
+    Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BikeUncheckedUpdateManyInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    Brand?: StringFieldUpdateOperationsInput | string
+    Model?: StringFieldUpdateOperationsInput | string
+    Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerId?: StringFieldUpdateOperationsInput | string
   }
@@ -3613,15 +3613,15 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type CustomerScalarRelationFilter = {
@@ -3631,53 +3631,53 @@ export namespace Prisma {
 
   export type BikeCountOrderByAggregateInput = {
     bikeId?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    price?: SortOrder
+    Brand?: SortOrder
+    Model?: SortOrder
+    Year?: SortOrder
     createdAt?: SortOrder
     customerId?: SortOrder
   }
 
   export type BikeAvgOrderByAggregateInput = {
-    price?: SortOrder
+    Year?: SortOrder
   }
 
   export type BikeMaxOrderByAggregateInput = {
     bikeId?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    price?: SortOrder
+    Brand?: SortOrder
+    Model?: SortOrder
+    Year?: SortOrder
     createdAt?: SortOrder
     customerId?: SortOrder
   }
 
   export type BikeMinOrderByAggregateInput = {
     bikeId?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    price?: SortOrder
+    Brand?: SortOrder
+    Model?: SortOrder
+    Year?: SortOrder
     createdAt?: SortOrder
     customerId?: SortOrder
   }
 
   export type BikeSumOrderByAggregateInput = {
-    price?: SortOrder
+    Year?: SortOrder
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
     _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type BikeCreateNestedManyWithoutCustomerInput = {
@@ -3736,7 +3736,7 @@ export namespace Prisma {
     connect?: CustomerWhereUniqueInput
   }
 
-  export type FloatFieldUpdateOperationsInput = {
+  export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
@@ -3819,6 +3819,22 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -3830,35 +3846,19 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
   export type BikeCreateWithoutCustomerInput = {
     bikeId?: string
-    name: string
-    type: string
-    price: number
+    Brand: string
+    Model: string
+    Year: number
     createdAt?: Date | string
   }
 
   export type BikeUncheckedCreateWithoutCustomerInput = {
     bikeId?: string
-    name: string
-    type: string
-    price: number
+    Brand: string
+    Model: string
+    Year: number
     createdAt?: Date | string
   }
 
@@ -3893,9 +3893,9 @@ export namespace Prisma {
     OR?: BikeScalarWhereInput[]
     NOT?: BikeScalarWhereInput | BikeScalarWhereInput[]
     bikeId?: StringFilter<"Bike"> | string
-    name?: StringFilter<"Bike"> | string
-    type?: StringFilter<"Bike"> | string
-    price?: FloatFilter<"Bike"> | number
+    Brand?: StringFilter<"Bike"> | string
+    Model?: StringFilter<"Bike"> | string
+    Year?: IntFilter<"Bike"> | number
     createdAt?: DateTimeFilter<"Bike"> | Date | string
     customerId?: StringFilter<"Bike"> | string
   }
@@ -3950,33 +3950,33 @@ export namespace Prisma {
 
   export type BikeCreateManyCustomerInput = {
     bikeId?: string
-    name: string
-    type: string
-    price: number
+    Brand: string
+    Model: string
+    Year: number
     createdAt?: Date | string
   }
 
   export type BikeUpdateWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    Brand?: StringFieldUpdateOperationsInput | string
+    Model?: StringFieldUpdateOperationsInput | string
+    Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BikeUncheckedUpdateWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    Brand?: StringFieldUpdateOperationsInput | string
+    Model?: StringFieldUpdateOperationsInput | string
+    Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BikeUncheckedUpdateManyWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    Brand?: StringFieldUpdateOperationsInput | string
+    Model?: StringFieldUpdateOperationsInput | string
+    Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
