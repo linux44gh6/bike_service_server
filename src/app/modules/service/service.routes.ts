@@ -8,5 +8,5 @@ router.post('/',serviceManagementController.createService)
 router.get('/',serviceManagementController.getAllServices)
 router.get('/:serviceId',serviceManagementController.getServiceById)
 router.get('/status',serviceManagementController.retriveDataByStatus)
-router.patch('/:serviceId',validateRequest(ServiceValidation.serviceUpdateSchema),serviceManagementController.updateServiceById)
+router.put('/:serviceId',validateRequest(ServiceValidation.serviceUpdateSchema),serviceManagementController.updateServiceById)
 export const serviceRoutes = router;

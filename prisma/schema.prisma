@@ -21,13 +21,13 @@ model Bike{
   createdAt DateTime @default(now())
   customerId String 
   customer   Customer @relation(fields: [customerId], references: [customerId])
-  service    Service?
+  service    Service[]
   @@map("bikes")
 }
 
 model Service{
   serviceId String  @id @default(cuid())
-  bikeId   String @unique
+  bikeId   String 
   bike     Bike    @relation(fields: [bikeId], references: [bikeId])
   serviceDate DateTime @default(now())
   completionDate DateTime?

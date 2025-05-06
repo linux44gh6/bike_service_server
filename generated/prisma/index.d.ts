@@ -1096,6 +1096,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BikeCountOutputType
+   */
+
+  export type BikeCountOutputType = {
+    service: number
+  }
+
+  export type BikeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    service?: boolean | BikeCountOutputTypeCountServiceArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BikeCountOutputType without action
+   */
+  export type BikeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BikeCountOutputType
+     */
+    select?: BikeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BikeCountOutputType without action
+   */
+  export type BikeCountOutputTypeCountServiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServiceWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -2377,6 +2408,7 @@ export namespace Prisma {
     customerId?: boolean
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     service?: boolean | Bike$serviceArgs<ExtArgs>
+    _count?: boolean | BikeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bike"]>
 
   export type BikeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2412,6 +2444,7 @@ export namespace Prisma {
   export type BikeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
     service?: boolean | Bike$serviceArgs<ExtArgs>
+    _count?: boolean | BikeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BikeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | CustomerDefaultArgs<ExtArgs>
@@ -2424,7 +2457,7 @@ export namespace Prisma {
     name: "Bike"
     objects: {
       customer: Prisma.$CustomerPayload<ExtArgs>
-      service: Prisma.$ServicePayload<ExtArgs> | null
+      service: Prisma.$ServicePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       bikeId: string
@@ -2828,7 +2861,7 @@ export namespace Prisma {
   export interface Prisma__BikeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    service<T extends Bike$serviceArgs<ExtArgs> = {}>(args?: Subset<T, Bike$serviceArgs<ExtArgs>>): Prisma__ServiceClient<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    service<T extends Bike$serviceArgs<ExtArgs> = {}>(args?: Subset<T, Bike$serviceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3276,6 +3309,11 @@ export namespace Prisma {
      */
     include?: ServiceInclude<ExtArgs> | null
     where?: ServiceWhereInput
+    orderBy?: ServiceOrderByWithRelationInput | ServiceOrderByWithRelationInput[]
+    cursor?: ServiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServiceScalarFieldEnum | ServiceScalarFieldEnum[]
   }
 
   /**
@@ -4585,7 +4623,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Bike"> | Date | string
     customerId?: StringFilter<"Bike"> | string
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
-    service?: XOR<ServiceNullableScalarRelationFilter, ServiceWhereInput> | null
+    service?: ServiceListRelationFilter
   }
 
   export type BikeOrderByWithRelationInput = {
@@ -4596,7 +4634,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     customerId?: SortOrder
     customer?: CustomerOrderByWithRelationInput
-    service?: ServiceOrderByWithRelationInput
+    service?: ServiceOrderByRelationAggregateInput
   }
 
   export type BikeWhereUniqueInput = Prisma.AtLeast<{
@@ -4610,7 +4648,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Bike"> | Date | string
     customerId?: StringFilter<"Bike"> | string
     customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
-    service?: XOR<ServiceNullableScalarRelationFilter, ServiceWhereInput> | null
+    service?: ServiceListRelationFilter
   }, "bikeId">
 
   export type BikeOrderByWithAggregationInput = {
@@ -4664,16 +4702,16 @@ export namespace Prisma {
 
   export type ServiceWhereUniqueInput = Prisma.AtLeast<{
     serviceId?: string
-    bikeId?: string
     AND?: ServiceWhereInput | ServiceWhereInput[]
     OR?: ServiceWhereInput[]
     NOT?: ServiceWhereInput | ServiceWhereInput[]
+    bikeId?: StringFilter<"Service"> | string
     serviceDate?: DateTimeFilter<"Service"> | Date | string
     completionDate?: DateTimeNullableFilter<"Service"> | Date | string | null
     description?: StringFilter<"Service"> | string
     status?: EnumServiceStatusFilter<"Service"> | $Enums.ServiceStatus
     bike?: XOR<BikeScalarRelationFilter, BikeWhereInput>
-  }, "serviceId" | "bikeId">
+  }, "serviceId">
 
   export type ServiceOrderByWithAggregationInput = {
     serviceId?: SortOrder
@@ -4766,7 +4804,7 @@ export namespace Prisma {
     Year: number
     createdAt?: Date | string
     customer: CustomerCreateNestedOneWithoutBikeInput
-    service?: ServiceCreateNestedOneWithoutBikeInput
+    service?: ServiceCreateNestedManyWithoutBikeInput
   }
 
   export type BikeUncheckedCreateInput = {
@@ -4776,7 +4814,7 @@ export namespace Prisma {
     Year: number
     createdAt?: Date | string
     customerId: string
-    service?: ServiceUncheckedCreateNestedOneWithoutBikeInput
+    service?: ServiceUncheckedCreateNestedManyWithoutBikeInput
   }
 
   export type BikeUpdateInput = {
@@ -4786,7 +4824,7 @@ export namespace Prisma {
     Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customer?: CustomerUpdateOneRequiredWithoutBikeNestedInput
-    service?: ServiceUpdateOneWithoutBikeNestedInput
+    service?: ServiceUpdateManyWithoutBikeNestedInput
   }
 
   export type BikeUncheckedUpdateInput = {
@@ -4796,7 +4834,7 @@ export namespace Prisma {
     Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     customerId?: StringFieldUpdateOperationsInput | string
-    service?: ServiceUncheckedUpdateOneWithoutBikeNestedInput
+    service?: ServiceUncheckedUpdateManyWithoutBikeNestedInput
   }
 
   export type BikeCreateManyInput = {
@@ -4995,9 +5033,14 @@ export namespace Prisma {
     isNot?: CustomerWhereInput
   }
 
-  export type ServiceNullableScalarRelationFilter = {
-    is?: ServiceWhereInput | null
-    isNot?: ServiceWhereInput | null
+  export type ServiceListRelationFilter = {
+    every?: ServiceWhereInput
+    some?: ServiceWhereInput
+    none?: ServiceWhereInput
+  }
+
+  export type ServiceOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type BikeCountOrderByAggregateInput = {
@@ -5186,16 +5229,18 @@ export namespace Prisma {
     connect?: CustomerWhereUniqueInput
   }
 
-  export type ServiceCreateNestedOneWithoutBikeInput = {
-    create?: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutBikeInput
-    connect?: ServiceWhereUniqueInput
+  export type ServiceCreateNestedManyWithoutBikeInput = {
+    create?: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput> | ServiceCreateWithoutBikeInput[] | ServiceUncheckedCreateWithoutBikeInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutBikeInput | ServiceCreateOrConnectWithoutBikeInput[]
+    createMany?: ServiceCreateManyBikeInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
   }
 
-  export type ServiceUncheckedCreateNestedOneWithoutBikeInput = {
-    create?: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutBikeInput
-    connect?: ServiceWhereUniqueInput
+  export type ServiceUncheckedCreateNestedManyWithoutBikeInput = {
+    create?: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput> | ServiceCreateWithoutBikeInput[] | ServiceUncheckedCreateWithoutBikeInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutBikeInput | ServiceCreateOrConnectWithoutBikeInput[]
+    createMany?: ServiceCreateManyBikeInputEnvelope
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -5214,24 +5259,32 @@ export namespace Prisma {
     update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutBikeInput, CustomerUpdateWithoutBikeInput>, CustomerUncheckedUpdateWithoutBikeInput>
   }
 
-  export type ServiceUpdateOneWithoutBikeNestedInput = {
-    create?: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutBikeInput
-    upsert?: ServiceUpsertWithoutBikeInput
-    disconnect?: ServiceWhereInput | boolean
-    delete?: ServiceWhereInput | boolean
-    connect?: ServiceWhereUniqueInput
-    update?: XOR<XOR<ServiceUpdateToOneWithWhereWithoutBikeInput, ServiceUpdateWithoutBikeInput>, ServiceUncheckedUpdateWithoutBikeInput>
+  export type ServiceUpdateManyWithoutBikeNestedInput = {
+    create?: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput> | ServiceCreateWithoutBikeInput[] | ServiceUncheckedCreateWithoutBikeInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutBikeInput | ServiceCreateOrConnectWithoutBikeInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutBikeInput | ServiceUpsertWithWhereUniqueWithoutBikeInput[]
+    createMany?: ServiceCreateManyBikeInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutBikeInput | ServiceUpdateWithWhereUniqueWithoutBikeInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutBikeInput | ServiceUpdateManyWithWhereWithoutBikeInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
   }
 
-  export type ServiceUncheckedUpdateOneWithoutBikeNestedInput = {
-    create?: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutBikeInput
-    upsert?: ServiceUpsertWithoutBikeInput
-    disconnect?: ServiceWhereInput | boolean
-    delete?: ServiceWhereInput | boolean
-    connect?: ServiceWhereUniqueInput
-    update?: XOR<XOR<ServiceUpdateToOneWithWhereWithoutBikeInput, ServiceUpdateWithoutBikeInput>, ServiceUncheckedUpdateWithoutBikeInput>
+  export type ServiceUncheckedUpdateManyWithoutBikeNestedInput = {
+    create?: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput> | ServiceCreateWithoutBikeInput[] | ServiceUncheckedCreateWithoutBikeInput[]
+    connectOrCreate?: ServiceCreateOrConnectWithoutBikeInput | ServiceCreateOrConnectWithoutBikeInput[]
+    upsert?: ServiceUpsertWithWhereUniqueWithoutBikeInput | ServiceUpsertWithWhereUniqueWithoutBikeInput[]
+    createMany?: ServiceCreateManyBikeInputEnvelope
+    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
+    update?: ServiceUpdateWithWhereUniqueWithoutBikeInput | ServiceUpdateWithWhereUniqueWithoutBikeInput[]
+    updateMany?: ServiceUpdateManyWithWhereWithoutBikeInput | ServiceUpdateManyWithWhereWithoutBikeInput[]
+    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
   }
 
   export type BikeCreateNestedOneWithoutServiceInput = {
@@ -5409,7 +5462,7 @@ export namespace Prisma {
     Model: string
     Year: number
     createdAt?: Date | string
-    service?: ServiceCreateNestedOneWithoutBikeInput
+    service?: ServiceCreateNestedManyWithoutBikeInput
   }
 
   export type BikeUncheckedCreateWithoutCustomerInput = {
@@ -5418,7 +5471,7 @@ export namespace Prisma {
     Model: string
     Year: number
     createdAt?: Date | string
-    service?: ServiceUncheckedCreateNestedOneWithoutBikeInput
+    service?: ServiceUncheckedCreateNestedManyWithoutBikeInput
   }
 
   export type BikeCreateOrConnectWithoutCustomerInput = {
@@ -5501,6 +5554,11 @@ export namespace Prisma {
     create: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput>
   }
 
+  export type ServiceCreateManyBikeInputEnvelope = {
+    data: ServiceCreateManyBikeInput | ServiceCreateManyBikeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CustomerUpsertWithoutBikeInput = {
     update: XOR<CustomerUpdateWithoutBikeInput, CustomerUncheckedUpdateWithoutBikeInput>
     create: XOR<CustomerCreateWithoutBikeInput, CustomerUncheckedCreateWithoutBikeInput>
@@ -5528,31 +5586,32 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceUpsertWithoutBikeInput = {
+  export type ServiceUpsertWithWhereUniqueWithoutBikeInput = {
+    where: ServiceWhereUniqueInput
     update: XOR<ServiceUpdateWithoutBikeInput, ServiceUncheckedUpdateWithoutBikeInput>
     create: XOR<ServiceCreateWithoutBikeInput, ServiceUncheckedCreateWithoutBikeInput>
-    where?: ServiceWhereInput
   }
 
-  export type ServiceUpdateToOneWithWhereWithoutBikeInput = {
-    where?: ServiceWhereInput
+  export type ServiceUpdateWithWhereUniqueWithoutBikeInput = {
+    where: ServiceWhereUniqueInput
     data: XOR<ServiceUpdateWithoutBikeInput, ServiceUncheckedUpdateWithoutBikeInput>
   }
 
-  export type ServiceUpdateWithoutBikeInput = {
-    serviceId?: StringFieldUpdateOperationsInput | string
-    serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    description?: StringFieldUpdateOperationsInput | string
-    status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+  export type ServiceUpdateManyWithWhereWithoutBikeInput = {
+    where: ServiceScalarWhereInput
+    data: XOR<ServiceUpdateManyMutationInput, ServiceUncheckedUpdateManyWithoutBikeInput>
   }
 
-  export type ServiceUncheckedUpdateWithoutBikeInput = {
-    serviceId?: StringFieldUpdateOperationsInput | string
-    serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    description?: StringFieldUpdateOperationsInput | string
-    status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+  export type ServiceScalarWhereInput = {
+    AND?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+    OR?: ServiceScalarWhereInput[]
+    NOT?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
+    serviceId?: StringFilter<"Service"> | string
+    bikeId?: StringFilter<"Service"> | string
+    serviceDate?: DateTimeFilter<"Service"> | Date | string
+    completionDate?: DateTimeNullableFilter<"Service"> | Date | string | null
+    description?: StringFilter<"Service"> | string
+    status?: EnumServiceStatusFilter<"Service"> | $Enums.ServiceStatus
   }
 
   export type BikeCreateWithoutServiceInput = {
@@ -5621,7 +5680,7 @@ export namespace Prisma {
     Model?: StringFieldUpdateOperationsInput | string
     Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    service?: ServiceUpdateOneWithoutBikeNestedInput
+    service?: ServiceUpdateManyWithoutBikeNestedInput
   }
 
   export type BikeUncheckedUpdateWithoutCustomerInput = {
@@ -5630,7 +5689,7 @@ export namespace Prisma {
     Model?: StringFieldUpdateOperationsInput | string
     Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    service?: ServiceUncheckedUpdateOneWithoutBikeNestedInput
+    service?: ServiceUncheckedUpdateManyWithoutBikeNestedInput
   }
 
   export type BikeUncheckedUpdateManyWithoutCustomerInput = {
@@ -5639,6 +5698,38 @@ export namespace Prisma {
     Model?: StringFieldUpdateOperationsInput | string
     Year?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCreateManyBikeInput = {
+    serviceId?: string
+    serviceDate?: Date | string
+    completionDate?: Date | string | null
+    description: string
+    status?: $Enums.ServiceStatus
+  }
+
+  export type ServiceUpdateWithoutBikeInput = {
+    serviceId?: StringFieldUpdateOperationsInput | string
+    serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+  }
+
+  export type ServiceUncheckedUpdateWithoutBikeInput = {
+    serviceId?: StringFieldUpdateOperationsInput | string
+    serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+  }
+
+  export type ServiceUncheckedUpdateManyWithoutBikeInput = {
+    serviceId?: StringFieldUpdateOperationsInput | string
+    serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
   }
 
 
